@@ -1,6 +1,9 @@
 <?php
 namespace Pinguin;
 
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Helper\HelperSet;
+
 /**
  * Class ConsoleHelper
  * @package Pinguin
@@ -8,6 +11,39 @@ namespace Pinguin;
  */
 class ConsoleHelper
 {
+
+    /**
+     * @return string
+     */
+    protected function getName()
+    {
+        return 'Pinguin Command Line Interface';
+    }
+
+    /**
+     * @return string
+     */
+    protected function getVersion()
+    {
+        return '1';
+    }
+
+    /**
+     * Creates console.
+     *
+     * @param HelperSet $helperSet
+     * @param array $commands
+     * @return Application
+     */
+    public function createConsole(HelperSet $helperSet, array $commands)
+    {
+        $cli = new Application($this->getName(), $this->getVersion());
+        $cli->setCatchExceptions(true);
+        $cli->setHelperSet($helperSet);
+        $cli->addCommands($commands);
+        return $cli;
+    }
+
     /**
      * @param $baseDir
      * @return string
