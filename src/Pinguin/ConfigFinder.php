@@ -26,6 +26,23 @@ class ConfigFinder
     }
 
     /**
+     * Finds a config file among possible directories.
+     *
+     * @param $baseDir
+     * @return string
+     */
+    public function find($baseDir)
+    {
+        foreach ($this->resolveDirPaths($baseDir) as $directory) {
+            $configFile = $this->getFilePath($directory);
+            if (is_readable($configFile)) {
+                return $configFile;
+            }
+        }
+        return '';
+    }
+
+    /**
      * Resolves directories config according to $baseDir.
      *
      * @param $baseDir
@@ -38,5 +55,16 @@ class ConfigFinder
             $result[] = realpath($baseDir . DIRECTORY_SEPARATOR . $dir);
         }
         return array_filter($result);
+    }
+
+    /**
+     * Concats $directory and file name.
+     *
+     * @param $directory
+     * @return string
+     */
+    private function getFilePath($directory)
+    {
+        return $directory . DIRECTORY_SEPARATOR . self::FILE_NAME;
     }
 }

@@ -32,6 +32,26 @@ class ConfigFinderTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    public function testFind()
+    {
+        $configFinder = new ConfigFinder();
+        $file = $configFinder->find($this->getResourcesDir());
+        $this->assertSame(
+            $this->getResourcesDir() . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'cli-config.php',
+            $file
+        );
+    }
+
+    public function testFindWrong()
+    {
+        $configFinder = new ConfigFinder();
+        $file = $configFinder->find(__DIR__);
+        $this->assertSame(
+            '',
+            $file
+        );
+    }
+
     private function getResourcesDir(){
         return __DIR__ . DIRECTORY_SEPARATOR . 'resources';
     }
