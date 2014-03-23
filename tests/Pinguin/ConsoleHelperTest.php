@@ -30,4 +30,42 @@ class ConsoleHelperTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($helperSet, $result->getHelperSet());
         $this->assertSame($command, $result->get('test'));
     }
+
+    /**
+     * Tests the creation of helperSet
+     */
+    public function testCreateHelperSet()
+    {
+        $consoleHelper = new ConsoleHelper();
+        $result = $consoleHelper->createHelperSet($this->getEntityManager());
+
+        $this->assertInstanceOf('\Symfony\Component\Console\Helper\HelperSet', $result);
+        $this->assertInstanceOf('\Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper', $result->get('db'));
+        $this->assertInstanceOf('\Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper', $result->get('em'));
+    }
+
+    /**
+     * @return \Doctrine\ORM\EntityManager
+     */
+    private function getEntityManager()
+    {
+        $mock = $this->getMockBuilder('Doctrine\ORM\EntityManager')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $mock->expects($this->any())
+            ->method('getConnection')
+            ->will($this->returnValue($this->getConnection()));
+        return $mock;
+    }
+
+    /**
+     * @return \Doctrine\DBAL\Connection
+     */
+    private function getConnection()
+    {
+        return $this->getMockBuilder('Doctrine\DBAL\Connection')
+            ->disableOriginalConstructor()
+            ->getMock();
+    }
 }

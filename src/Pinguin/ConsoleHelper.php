@@ -1,6 +1,9 @@
 <?php
 namespace Pinguin;
 
+use Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Helper\HelperSet;
 
@@ -42,6 +45,20 @@ class ConsoleHelper
         $cli->setHelperSet($helperSet);
         $cli->addCommands($commands);
         return $cli;
+    }
+
+    /**
+     * Creates a helperSet for console.
+     *
+     * @param EntityManager $entityManager
+     * @return HelperSet
+     */
+    public function createHelperSet(EntityManager $entityManager)
+    {
+        return new HelperSet(array(
+            'db' => new ConnectionHelper($entityManager->getConnection()),
+            'em' => new EntityManagerHelper($entityManager)
+        ));
     }
 
     /**
