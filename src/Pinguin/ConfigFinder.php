@@ -16,9 +16,10 @@ class ConfigFinder
     /**
      * Indicates location of possibles config directories.
      *
-     * @return array
+     * @return string[]
      */
-    public static function getDirs(){
+    public static function getDirs()
+    {
         return array(
             '.',
             '.' . DIRECTORY_SEPARATOR . 'config'
@@ -51,7 +52,7 @@ class ConfigFinder
     public function resolveDirPaths($baseDir)
     {
         $result = array();
-        foreach($this->getDirs() as $dir){
+        foreach ($this->getDirs() as $dir) {
             $result[] = realpath($baseDir . DIRECTORY_SEPARATOR . $dir);
         }
         return array_filter($result);

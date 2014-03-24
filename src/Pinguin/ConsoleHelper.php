@@ -35,7 +35,7 @@ class ConsoleHelper
      * Creates console.
      *
      * @param HelperSet $helperSet
-     * @param array $commands
+     * @param \Symfony\Component\Console\Command\Command[] $commands
      * @return Application
      */
     public function createConsole(HelperSet $helperSet, array $commands)

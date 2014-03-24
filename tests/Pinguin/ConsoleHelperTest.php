@@ -56,6 +56,7 @@ class ConsoleHelperTest extends \PHPUnit_Framework_TestCase
         $mock->expects($this->any())
             ->method('getConnection')
             ->will($this->returnValue($this->getConnection()));
+
         return $mock;
     }
 

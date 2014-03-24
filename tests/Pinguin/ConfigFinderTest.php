@@ -9,7 +9,8 @@ namespace Pinguin;
 class ConfigFinderTest extends \PHPUnit_Framework_TestCase
 {
 
-    public function testResolveDirPaths(){
+    public function testResolveDirPaths()
+    {
         $configFinder = new ConfigFinder();
         $paths = $configFinder->resolveDirPaths($this->getResourcesDir());
         $this->assertSame(
@@ -21,7 +22,8 @@ class ConfigFinderTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testResolveDirPathsWrong(){
+    public function testResolveDirPathsWrong()
+    {
         $configFinder = new ConfigFinder();
         $paths = $configFinder->resolveDirPaths(__DIR__);
         $this->assertSame(
@@ -52,7 +54,8 @@ class ConfigFinderTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    private function getResourcesDir(){
+    private function getResourcesDir()
+    {
         return __DIR__ . DIRECTORY_SEPARATOR . 'resources';
     }
 }
