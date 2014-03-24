@@ -1,23 +1,23 @@
 {
-	"name": "raphhh/pinguin",
-	"description": "A command line interface for Doctrine",
-	"minimum-stability": "stable",
+    "name": "raphhh/pinguin",
+    "description": "A command line interface for Doctrine",
+    "minimum-stability": "stable",
     "type": "library",
     "keywords": ["pinguin", "console", "cli", "command line interface", "Doctrine"],
     "homepage": "http://github.com/Raphhh/pinguin",
     "license": "MIT",
     "authors": [
-		{
+        {
             "name": "Raphaël Lefebvre",
             "email": "raphael@raphaellefebvre.be"
-		}
-	],
-	"autoload": {
-		"psr-0": {
-			"Pinguin": ["src/", "tests/"]
-		}
-	},
-	"require": {
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "Pinguin": ["src/", "tests/"]
+        }
+    },
+    "require": {
         "php": ">=5.3",
         "doctrine/orm": "*"
     }
