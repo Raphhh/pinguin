@@ -62,7 +62,7 @@ class ConsoleHelper
     }
 
     /**
-     * @param $baseDir
+     * @param string $baseDir
      * @return string
      */
     private function findConfigFile($baseDir)

@@ -29,7 +29,7 @@ class ConfigFinder
     /**
      * Finds a config file among possible directories.
      *
-     * @param $baseDir
+     * @param string $baseDir
      * @return string
      */
     public function find($baseDir)
@@ -46,8 +46,8 @@ class ConfigFinder
     /**
      * Resolves directories config according to $baseDir.
      *
-     * @param $baseDir
-     * @return array
+     * @param string $baseDir
+     * @return string[]
      */
     public function resolveDirPaths($baseDir)
     {
@@ -61,7 +61,7 @@ class ConfigFinder
     /**
      * Concats $directory and file name.
      *
-     * @param $directory
+     * @param string $directory
      * @return string
      */
     private function getFilePath($directory)
