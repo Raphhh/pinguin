@@ -82,6 +82,27 @@ class ConsoleHelper
     }
 
     /**
+     * Creates console from a config directory.
+     * This directory or its subdirectory "config" must contain a config file named "cli-config.php"
+     *
+     * @param $baseDir
+     * @return Application
+     * @throws \RuntimeException
+     */
+    public function createConsoleFromProject($baseDir)
+    {
+        $configFile = $this->findConfigFile($baseDir);
+        if ($configFile) {
+            return $this->createConsoleFromConfig($configFile);
+        }
+        throw new \RuntimeException(sprintf(
+            'No config file founded in directory "%s".',
+            $baseDir,
+            ConfigFinder::FILE_NAME
+        ));
+    }
+
+    /**
      * @param string $baseDir
      * @return string
      */

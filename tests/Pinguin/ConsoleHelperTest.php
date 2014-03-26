@@ -79,4 +79,27 @@ class ConsoleHelperTest extends \PHPUnit_Framework_TestCase
         $result = $consoleHelper->createConsoleFromConfig(__DIR__ . '/resources/config/cli-config.php');
         $this->assertInstanceOf('\Symfony\Component\Console\Application', $result);
     }
+
+    /**
+     * Tests console creation from config dir.
+     */
+    public function testCreateConsoleFromProject()
+    {
+        $consoleHelper = new ConsoleHelper();
+        $result = $consoleHelper->createConsoleFromProject(__DIR__ . '/resources');
+        $this->assertInstanceOf('\Symfony\Component\Console\Application', $result);
+    }
+
+    /**
+     * Tests console creation from config dir but there is no file.
+     *
+     * @expectedException \RuntimeException
+     * @expectedExceptionMessage No config file founded
+     */
+    public function testCreateConsoleFromProjectWithoutFile()
+    {
+        $consoleHelper = new ConsoleHelper();
+        $result = $consoleHelper->createConsoleFromProject(__DIR__);
+        $this->assertInstanceOf('\Symfony\Component\Console\Application', $result);
+    }
 }
