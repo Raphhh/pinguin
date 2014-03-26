@@ -85,7 +85,7 @@ class ConsoleHelper
      * Creates console from a config directory.
      * This directory or its subdirectory "config" must contain a config file named "cli-config.php"
      *
-     * @param $baseDir
+     * @param string $baseDir
      * @return Application
      * @throws \RuntimeException
      */
