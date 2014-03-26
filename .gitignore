@@ -1,7 +1,6 @@
-# PHP editors
-/.idea/
-
-/vendor/
+.idea/
+vendor/
+config/
 phpunit.xml
 composer.lock
 composer.phar
