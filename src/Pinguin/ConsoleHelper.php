@@ -62,6 +62,26 @@ class ConsoleHelper
     }
 
     /**
+     * Creates console from a config file.
+     * Config file must instantiate two variables:
+     *  - $entityManager
+     *  - $commands
+     *
+     * @param string $configFile
+     * @return Application
+     */
+    public function createConsoleFromConfig($configFile)
+    {
+        require $configFile;
+        return $this->createConsole(
+            $this->createHelperSet(
+                isset($entityManager) ? $entityManager : null
+            ),
+            isset($commands) ? $commands : null
+        );
+    }
+
+    /**
      * @param string $baseDir
      * @return string
      */

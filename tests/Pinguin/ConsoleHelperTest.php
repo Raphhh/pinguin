@@ -69,4 +69,14 @@ class ConsoleHelperTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->getMock();
     }
+
+    /**
+     * Tests console creation from config file.
+     */
+    public function testCreateConsoleFromConfig()
+    {
+        $consoleHelper = new ConsoleHelper();
+        $result = $consoleHelper->createConsoleFromConfig(__DIR__ . '/resources/config/cli-config.php');
+        $this->assertInstanceOf('\Symfony\Component\Console\Application', $result);
+    }
 }
