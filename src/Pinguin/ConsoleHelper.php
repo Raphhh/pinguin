@@ -103,6 +103,16 @@ class ConsoleHelper
     }
 
     /**
+     * Creates console from working directory.
+     *
+     * @return Application
+     */
+    public function createConsoleFromLocalConfig()
+    {
+        return $this->createConsoleFromProject(getcwd());
+    }
+
+    /**
      * @param string $baseDir
      * @return string
      */

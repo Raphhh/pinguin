@@ -102,4 +102,28 @@ class ConsoleHelperTest extends \PHPUnit_Framework_TestCase
         $result = $consoleHelper->createConsoleFromProject(__DIR__);
         $this->assertInstanceOf('\Symfony\Component\Console\Application', $result);
     }
+
+    /**
+     * Tests console creation from working directory.
+     */
+    public function testCreateConsoleFromLocalConfig()
+    {
+        $this->getConsoleHelper()->createConsoleFromLocalConfig();
+    }
+
+    /**
+     * @return ConsoleHelper
+     */
+    private function getConsoleHelper()
+    {
+        $consoleHelper = $this->getMockBuilder('Pinguin\ConsoleHelper')
+            ->setMethods(array('createConsoleFromProject'))
+            ->getMock();
+
+        $consoleHelper->expects($this->once())
+            ->method('createConsoleFromProject')
+            ->with($this->equalTo(getcwd()));
+
+        return $consoleHelper;
+    }
 }
